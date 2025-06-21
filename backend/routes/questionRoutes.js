@@ -10,6 +10,8 @@ const {
 
 router.post('/questions', postQuestion);
 router.get('/questions', getAllQuestions);
+router.get('/questions/:id', require('../controllers/questionController').getQuestionById);
+router.put('/questions/:id', require('../controllers/questionController').updateQuestion);
 router.put('/questions/:id/answer', answerQuestion);
 router.delete('/questions/:id', deleteQuestion);
 router.get('/stats', getStats);
