@@ -219,4 +219,19 @@ frontend/
 │  vite.config.js
 ```
 
+## 🧪 Testing & Coverage
+
+- **Run all tests and view coverage:**
+  ```bash
+  npm test
+  ```
+- The test suite uses an in-memory MongoDB server, so you do not need a running MongoDB instance for tests.
+- All API endpoints and controller logic are covered, including error/edge cases.
+- **Expected:** All test suites should pass, with controller and route coverage close to 100%.
+
+### 📸 Test Coverage Screenshot
+
+>
+> ![Test Coverage Screenshot](https://github.com/user-attachments/assets/55eaadd2-c61d-41c4-a5e5-1dfce67cb84e)
+
 ---
