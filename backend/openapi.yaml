@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: AMA API
+  version: 1.0.0
+  description: API documentation for AMA project
+servers:
+  - url: http://localhost:3000/api
+paths:
+  /questions:
+    get:
+      summary: Get all questions
+      responses:
+        '200':
+          description: Success
+    post:
+      summary: Create a new question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+      responses:
+        '201':
+          description: Created
+  /questions/{id}:
+    get:
+      summary: Get a question by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    Question:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
