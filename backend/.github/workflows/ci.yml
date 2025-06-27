@@ -1,10 +1,44 @@
-- name: Install Keploy CLI
-  run: |
-    curl --silent -L https://keploy.io/ent/install.sh | bash
+name: CI
 
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-- name: Run Keploy Test Suite
-  run: |
-    export KEPLOY_API_KEY=gq52qLk68K6dvjhQlg== && keploy test-suite --app=cb9ec657-44c2-4982-b917-1a00d7dca078 --base-path https://ama-backend-x7tk.onrender.com/api --cloud
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Install Keploy CLI
+        run: |
+          curl --silent -L https://keploy.io/ent/install.sh | bash
+
+      - name: Run Keploy Test Suite
+        run: |
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }} && keploy test-suite --app=cb9ec657-44c2-4982-b917-1a00d7dca078 --base-path https://ama-backend-x7tk.onrender.com/api --cloud
 
