@@ -15,6 +15,14 @@ A minimalist social-media-style app where users can ask anonymous questions and 
 
 ---
 
+## 🧪 Keploy API Testing Dashboard
+
+Below is a screenshot of the Keploy API Testing Dashboard showing test reports:
+
+![Keploy Dashboard Screenshot](docs/keploy-dashboard-screenshot.png)
+
+---
+
 ## 🔗 Live Links
 
 - 🔹 **Frontend (Vercel)**: [https://ama.soumyodeep.tech](https://ama.soumyodeep.tech)
