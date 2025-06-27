@@ -10,12 +10,16 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: backend
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -32,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: coverage/
+          path: backend/coverage/
 
       - name: Install Keploy CLI
         run: |
@@ -40,5 +44,5 @@ jobs:
 
       - name: Run Keploy Test Suite
         run: |
-          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }} && keploy test-suite --app=cb9ec657-44c2-4982-b917-1a00d7dca078 --base-path https://ama-backend-x7tk.onrender.com/api --cloud
-
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
+          keploy test-suite --app=cb9ec657-44c2-4982-b917-1a00d7dca078 --base-path https://ama-backend-x7tk.onrender.com/api --cloud
